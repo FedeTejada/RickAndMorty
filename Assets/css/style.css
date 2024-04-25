@@ -13,9 +13,52 @@
 }
 
 .card:hover{
-    scale: 1.01;
+    scale: 1.02;
 }
 
+.card{
+    background-image: linear-gradient(to bottom, black, rgb(19, 14, 71) , black);
+    color: white;
+    /* border: solid 1px blueviolet; */
+}
 .colorNav{
     color: #FFF455;
+}
+
+.contentImagen{
+    background-image: url(../img/img-temp1.jpg);
+    background-position: center;
+    background-size: cover;
+    width: 300px;
+    height: 300px;
+    border-radius: 10px;
+}
+
+.contentImagen2{
+    background-image: url(../img/img2.webp);
+    background-position: center;
+    background-size: cover;
+    width: 300px;
+    height: 300px;
+    border-radius: 10px;
+}
+
+.contentImagen:hover{
+    background-image: url(../img/rick-morty-temporada1-img2.jpg);
+    background-position: center;
+    background-size: cover;
+    width: 300px;
+    height: 300px;
+    border-radius: 10px;
+    scale: 1.04;
+}
+
+.contentImagen2:hover{
+    background-image: url(../img/img-temp2.webp);
+    background-position: center;
+    background-size: cover;
+    width: 300px;
+    height: 300px;
+    border-radius: 10px;
+    scale: 1.04;
 }

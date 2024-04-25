@@ -2,6 +2,9 @@ let contenedorPersonaje = document.querySelector(".contenedorPersonaje");
 let contenedorEpisodio = document.querySelector(".contenedorEpisodio");
 let templatePersonaje = document.getElementById("templatePersonaje");
 let templateEpisodios = document.getElementById("templateEpisodios");
+let contentImage = document.querySelector(".contentImagen");
+
+
 
 
 //PAGINA DE PERSONAJES
@@ -22,7 +25,7 @@ function crearCardsPersonaje(datos){
     datos.results.forEach(element => {
         let clone = templatePersonaje.content.cloneNode(true);
         clone.querySelector(".nombre").textContent = element.name
-        clone.querySelector(".lead").textContent = element.species
+        clone.querySelector(".specie").textContent = element.species
         clone.querySelector("img").src = element.image
         // console.log(element);
         fragment.appendChild(clone);
@@ -33,16 +36,23 @@ function crearCardsPersonaje(datos){
 
     // PAGINA DE EPISODIOS
 
+    
+
 document.addEventListener("DOMContentLoaded", async()=>{
     try {
         let resp = await fetch("https://rickandmortyapi.com/api/episode");
         let datoEpisodio = await resp.json();
-        crearCardsEpisode(datoEpisodio);
-    } catch (error) {
+        contentImage.addEventListener("click", ()=>{
+            crearCardsEpisode(datoEpisodio);
+        })
+    
+    }
+
+     catch (error) {
         console.log(error);
     }
 })
-//CREAMOS LAS CARDS PARA LOS EPISODIOS
+// CREAMOS LAS CARDS PARA LOS EPISODIOS
 function crearCardsEpisode(datos){
     let frag = document.createDocumentFragment();
 
@@ -55,4 +65,5 @@ function crearCardsEpisode(datos){
     })
     contenedorEpisodio.appendChild(frag);
 };
+
 
