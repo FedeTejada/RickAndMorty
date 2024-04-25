@@ -4,10 +4,18 @@
     box-sizing: border-box;
 }
 
-.container {
+.container-fluid {
     background-image: linear-gradient(to bottom, black, rgb(19, 14, 71) , black);
 }
 
 .home{
     color: white;
+}
+
+.card:hover{
+    scale: 1.01;
+}
+
+.colorNav{
+    color: #FFF455;
 }
