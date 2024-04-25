@@ -1,50 +1,58 @@
 let contenedorPersonaje = document.querySelector(".contenedorPersonaje");
-let contenedorEpisodio = document.getElementById("contenedorEpisodio");
-let template = document.getElementById("template");
+let contenedorEpisodio = document.querySelector(".contenedorEpisodio");
+let templatePersonaje = document.getElementById("templatePersonaje");
 let templateEpisodios = document.getElementById("templateEpisodios");
 
 
-
+//PAGINA DE PERSONAJES
 document.addEventListener("DOMContentLoaded", async()=>{
     try {
         let respuesta = await fetch("https://rickandmortyapi.com/api/character");
-        let resp = await fetch("https://rickandmortyapi.com/api/episode");
         let datosPersonaje = await respuesta.json();
-        let datoEpisodio = await resp.json();
-        console.log(datoEpisodio.results);
-        // console.log(datosPersonaje);
-        crearCardEpisode(datoEpisodio);
         crearCardsPersonaje(datosPersonaje);
     } catch (error) {
         console.log(error);
     }
 
-})
-
+});
+//CREAMOS LAS CARDS DE LOS PERSONAJES
 function crearCardsPersonaje(datos){
     let fragment = document.createDocumentFragment();
 
     datos.results.forEach(element => {
-        let clone = template.content.cloneNode(true);
+        let clone = templatePersonaje.content.cloneNode(true);
         clone.querySelector(".nombre").textContent = element.name
         clone.querySelector(".lead").textContent = element.species
         clone.querySelector("img").src = element.image
+        // console.log(element);
         fragment.appendChild(clone);
     })
     contenedorPersonaje.appendChild(fragment);
     };
 
-function crearCardEpisode(datos){
-    let fragment = document.createDocumentFragment();
+
+    // PAGINA DE EPISODIOS
+
+document.addEventListener("DOMContentLoaded", async()=>{
+    try {
+        let resp = await fetch("https://rickandmortyapi.com/api/episode");
+        let datoEpisodio = await resp.json();
+        crearCardsEpisode(datoEpisodio);
+    } catch (error) {
+        console.log(error);
+    }
+})
+//CREAMOS LAS CARDS PARA LOS EPISODIOS
+function crearCardsEpisode(datos){
+    let frag = document.createDocumentFragment();
 
     datos.results.forEach(element =>{
-        console.log(element);
         let clone = templateEpisodios.content.cloneNode(true);
         clone.querySelector(".numeroDeEpisodio").textContent = element.episode;
         clone.querySelector(".nombreEpisodio").textContent = element.name;
-
-        fragment.appendChild(clone);
+        console.log(element);
+        frag.appendChild(clone);
     })
-    contenedorEpisodio.appendChild(fragment);
-}
+    contenedorEpisodio.appendChild(frag);
+};
 
