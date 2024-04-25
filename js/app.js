@@ -1,5 +1,5 @@
 let contenedorPersonaje = document.querySelector(".contenedorPersonaje");
-let contenedorEpisodios = document.querySelector(".contenedorEpisodios");
+let contenedorEpisodio = document.getElementById("contenedorEpisodio");
 let template = document.getElementById("template");
 let templateEpisodios = document.getElementById("templateEpisodios");
 
@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", async()=>{
         let resp = await fetch("https://rickandmortyapi.com/api/episode");
         let datosPersonaje = await respuesta.json();
         let datoEpisodio = await resp.json();
-        // console.log(datoEpisodio);
+        console.log(datoEpisodio.results);
         // console.log(datosPersonaje);
         crearCardEpisode(datoEpisodio);
         crearCardsPersonaje(datosPersonaje);
@@ -29,7 +29,6 @@ function crearCardsPersonaje(datos){
         clone.querySelector(".nombre").textContent = element.name
         clone.querySelector(".lead").textContent = element.species
         clone.querySelector("img").src = element.image
-        // console.log(element);
         fragment.appendChild(clone);
     })
     contenedorPersonaje.appendChild(fragment);
@@ -40,11 +39,12 @@ function crearCardEpisode(datos){
 
     datos.results.forEach(element =>{
         console.log(element);
-        // let clone = templateEpisodios.content.cloneNode(true);
-        // clone.querySelector(".nombreEpisode").textContent = element.name;
+        let clone = templateEpisodios.content.cloneNode(true);
+        clone.querySelector(".numeroDeEpisodio").textContent = element.episode;
+        clone.querySelector(".nombreEpisodio").textContent = element.name;
 
-        // fragment.appendChild(clone);
+        fragment.appendChild(clone);
     })
-    contenedorEpisodios.appendChild(fragment);
+    contenedorEpisodio.appendChild(fragment);
 }
 
